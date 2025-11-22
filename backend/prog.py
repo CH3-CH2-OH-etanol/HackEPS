@@ -1,15 +1,15 @@
 import csv
 
-# Obrim el CSV
+
 with open("DADES.csv", newline='', encoding="utf-8") as f:
     reader = csv.reader(f)
     files = list(reader)
 
-# Noms de les columnes
-header = files[0]
-requisits = header[1:9]   # EXACTAMENT 8 requisits
 
-# Dades dels barris
+header = files[0]
+requisits = header[1:9]   
+
+
 barris = []
 valors = []
 
@@ -20,25 +20,25 @@ for fila in files[1:]:
     barris.append(fila[0])
 
     fila_valors = []
-    for x in fila[1:9]:    # NOMÉS agafem les 8 columnes bones
+    for x in fila[1:9]:    
         try:
             fila_valors.append(int(x))
         except:
-            fila_valors.append(0)   # Si hi ha "ç" o buit → 0 automàtic
+            fila_valors.append(0)   
     valors.append(fila_valors)
 
 print("\nRESPON AMB: 1 = Sí   |   -1 = No   |   0 = M'és igual\n")
 
-# Preguntes automàtiques
+
 respostes = []
 for req in requisits:
     r = int(input(f"{req}? (1/-1/0): "))
     respostes.append(r)
     
 
-# Comparació
+
 punts = []
-respostes_no_zero = sum(1 for r in respostes if r != 0)  # Total de requisits que l'usuari ha contestat
+respostes_no_zero = sum(1 for r in respostes if r != 0) 
 
 for i in range(len(barris)):
     count = 0
@@ -54,11 +54,11 @@ for i in range(len(barris)):
 
     punts.append(count)
 
-# Trobar el guanyador
+
 max_index = punts.index(max(punts))
 millor_barri = barris[max_index]
 
-# Percentatge
+
 if respostes_no_zero > 0:
     percentatge = (punts[max_index] / respostes_no_zero) * 100
 else:
