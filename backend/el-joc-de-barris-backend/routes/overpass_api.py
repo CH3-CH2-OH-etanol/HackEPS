@@ -26,7 +26,6 @@ def make_matrix(barrio):
 
 # Ejemplo de uso
 
-neighborhood = ["Westlake", "Capitol Hill", "Ballard", "Fremont", "Queen Anne"]
-
+neighborhood = ["Bel-Air","Breverly Hills"]
 for n in neighborhood:
     print("Restaurantes en: "+n+" = "+str(make_matrix(n)))
