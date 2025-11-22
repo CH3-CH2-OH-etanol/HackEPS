@@ -34,9 +34,11 @@ respostes = []
 for req in requisits:
     r = int(input(f"{req}? (1/-1/0): "))
     respostes.append(r)
+    
 
 # Comparació
 punts = []
+respostes_no_zero = sum(1 for r in respostes if r != 0)  # Total de requisits que l'usuari ha contestat
 
 for i in range(len(barris)):
     count = 0
@@ -45,7 +47,6 @@ for i in range(len(barris)):
     for j in range(len(requisits)):
         valor_usuari = respostes[j]
         valor_barri = fila_barri[j]
-
         if valor_usuari == 0:
             continue
         if valor_usuari == valor_barri:
@@ -57,6 +58,12 @@ for i in range(len(barris)):
 max_index = punts.index(max(punts))
 millor_barri = barris[max_index]
 
+# Percentatge
+if respostes_no_zero > 0:
+    percentatge = (punts[max_index] / respostes_no_zero) * 100
+else:
+    percentatge = 0
+
 print("\n🏆  BARRI RECOMANAT:")
 print(millor_barri)
-print("Coincidències:", punts[max_index])
+print(f"Coincidències: {punts[max_index]} de {respostes_no_zero} ({percentatge:.1f}%)")
