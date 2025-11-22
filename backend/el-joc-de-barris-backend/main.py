@@ -1,6 +1,12 @@
-def main():
-    print("Hello from el-joc-de-barris-backend!")
+from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    main()
+@app.get("/")
+def root():
+    return RedirectResponse(url="/docs")
+
+@app.get("/health")
+def health_check():
+    return {"hola": "mundo"}
