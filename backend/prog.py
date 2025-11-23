@@ -1,48 +1,50 @@
 import csv
 
-
 with open("DADES.csv", newline='', encoding="utf-8") as f:
     reader = csv.reader(f)
     files = list(reader)
 
 
-header = files[0]
+header= files[0]
 requisits = header[1:9]   
 
 
 barris = []
 valors = []
 
-for fila in files[1:]:
-    if not fila[0].strip():
-        continue
+for fila in files[1:]:         
 
-    barris.append(fila[0])
+    barris.append(fila[0])      
 
-    fila_valors = []
-    for x in fila[1:9]:    
+    fila_valors = []            
+    for x in fila[1:9]:         
         try:
-            fila_valors.append(int(x))
+            numero = int(x)     
         except:
-            fila_valors.append(0)   
-    valors.append(fila_valors)
+            numero = 0         
+        fila_valors.append(numero)
+
+    valors.append(fila_valors) 
+
 
 print("\nRESPON AMB: 1 = Sí   |   -1 = No   |   0 = M'és igual\n")
 
 
 respostes = []
 for req in requisits:
-    r = int(input(f"{req}? (1/-1/0): "))
-    respostes.append(r)
+    pregunta = req + "? (1/-1/0): "  
+    r = int(input(pregunta))          
+    respostes.append(r)    
     
 
 
-punts = []
-respostes_no_zero = sum(1 for r in respostes if r != 0) 
+coincidencia = []
+respostes_valides = sum(1 for r in respostes if r != 0) 
 
 for i in range(len(barris)):
     count = 0
     fila_barri = valors[i]
+    
 
     for j in range(len(requisits)):
         valor_usuari = respostes[j]
@@ -52,18 +54,38 @@ for i in range(len(barris)):
         if valor_usuari == valor_barri:
             count += 1
 
-    punts.append(count)
+    coincidencia.append(count)
 
 
-max_index = punts.index(max(punts))
+max_index = coincidencia.index(max(coincidencia))
 millor_barri = barris[max_index]
 
 
-if respostes_no_zero > 0:
-    percentatge = (punts[max_index] / respostes_no_zero) * 100
+if respostes_valides > 0:
+    percentatge = (coincidencia[max_index] / respostes_valides) * 100
 else:
     percentatge = 0
 
-print("\n🏆  BARRI RECOMANAT:")
+print("\n BARRI RECOMANAT:")
 print(millor_barri)
-print(f"Coincidències: {punts[max_index]} de {respostes_no_zero} ({percentatge:.1f}%)")
+print(f"Coincidències: {coincidencia[max_index]} de {respostes_valides} ({percentatge:.1f}%)")
+
+
+print("\nREVISIÓ DE REQUISITS:")
+
+for j in range(len(requisits)):
+    valor_usuari = respostes[j]
+    valor_barri = valors[max_index][j]
+
+    if valor_usuari == 0:
+        print("- " + requisits[j] + ": no valorat (0)")
+    elif valor_usuari == valor_barri:
+        print("- " + requisits[j] + ": COMPLEIX ")
+    else:
+        print("- " + requisits[j] + ": NO compleix ")
+
+print("jUSTIFICACIÓ")
+
+print("El barri", millor_barri, "s'ha triat perquè és el que presenta un nombre més alt de coincidències")
+print("amb les teves preferències. Compleix", coincidencia[max_index], "dels", respostes_valides, "requisits que has indicat.")
+print("A dalt pots veure detalladament quins requisits coincideixen i quins no.")
