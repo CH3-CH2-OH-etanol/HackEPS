@@ -59,7 +59,7 @@ for i in range(len(barris)):
 
 max_index = coincidencia.index(max(coincidencia))
 millor_barri = barris[max_index]
-
+#resum
 
 if respostes_valides > 0:
     percentatge = (coincidencia[max_index] / respostes_valides) * 100
