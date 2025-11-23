@@ -84,7 +84,7 @@ export function LoginForm({
                 <Input id="password" type="password" required />
               </Field>
               <Field>
-                <Button onClick={() => router.push("/sing.up")}type="submit">Login</Button>
+                <Button onClick={() => router.push("/quest")}type="submit">Login</Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <Button onClick={() => router.push("/usuari")}type="submit">Sing up</Button>
                 </FieldDescription>
