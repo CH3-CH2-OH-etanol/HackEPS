@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image"
 import { useScroll, useTransform, motion } from "framer-motion"
 import { useRef } from "react"
@@ -39,7 +38,7 @@ export default function Hero() {
               Find your ideal neighborhood in Los Angeles with our personalized tool, designed to understand and analyze your unique lifestyle.
             </p>
             
-            <button onClick={() => router.push("/get-started")} className="px-5 py-2 border-2 border-white bg-transparent text-white text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black cursor-pointer rounded-md"><link rel="stylesheet" href="" />
+            <button onClick={() => router.push("/get-started")} className="px-5 py-2 border-2 border-white bg-transparent text-white text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black cursor-pointer rounded-md"><link rel="stylesheet"  />
               GET STARTED
             </button>
           </div>
