@@ -37,7 +37,7 @@ export default function QuizCard({
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-medium text-gray-600">
-              Pregunta {questionNumber} de {totalQuestions}
+              Question {questionNumber} de {totalQuestions}
             </span>
             <span className="text-sm font-medium text-gray-600">{Math.round(progress)}%</span>
           </div>

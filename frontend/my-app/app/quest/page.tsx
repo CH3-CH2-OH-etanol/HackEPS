@@ -6,7 +6,7 @@ import QuizCard from "@/components/quiz-card";
 import Image from "next/image";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
-
+import { Button } from "@/components/ui/button";
 const imageMap: Record<string, string> = {
   "Bel-Air": "BEL-AIR.jpg",
   "Beverly Hills": "Brewelry-Hills.jpg",
@@ -139,7 +139,11 @@ export default function Page() {
             numberOfPieces={200}
             recycle={false} // que solo caiga una vez
           />
-
+          <div className="w-full max-w-3xl flex justify-end mb-12 ">
+            <Button onClick={() => window.location.reload()}>
+              Try Again
+            </Button>
+          </div>
           <div className="w-full max-w-3xl rounded-2xl shadow-2xl border-2 p-8 bg-white transform scale-105">
             {imageMap[recivedResponse.barri_recomanat] && (
               <Image
