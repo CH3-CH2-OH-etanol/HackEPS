@@ -140,24 +140,26 @@ export default function Page() {
             recycle={false} // que solo caiga una vez
           />
 
-          <div className="max-w-sm rounded-xl shadow-lg border p-4 bg-white">
+          <div className="w-full max-w-3xl rounded-2xl shadow-2xl border-2 p-8 bg-white transform scale-105">
             {imageMap[recivedResponse.barri_recomanat] && (
               <Image
                 src={`/places/${imageMap[recivedResponse.barri_recomanat]}`}
                 alt={recivedResponse.barri_recomanat}
-                width={400}
-                height={250}
-                className="rounded-lg object-cover w-full h-56"
+                width={900}
+                height={600}
+                className="rounded-2xl object-cover w-full h-[400px]"
               />
             )}
 
-            <h2 className="text-2xl font-bold mt-4">{recivedResponse.barri_recomanat}</h2>
+            <h2 className="text-4xl font-extrabold mt-6 text-center">
+              {recivedResponse.barri_recomanat}
+            </h2>
 
-            <p className="text-gray-700 mt-2">
-              <strong>Percentatge:</strong> {recivedResponse.percentatge}%
+            <p className="text-gray-700 mt-4 text-xl text-center">
+              <strong>Percentatge:</strong> {recivedResponse.percentatge.toFixed(2)}%
             </p>
 
-            <p className="text-gray-700">
+            <p className="text-gray-700 text-xl text-center">
               <strong>Coincidències:</strong> {recivedResponse.coincidencies}
             </p>
           </div>
