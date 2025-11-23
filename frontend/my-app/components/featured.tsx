@@ -14,7 +14,7 @@ export default function Featured() {
       </div>
       <div className="flex-1 text-left lg:h-[800px] flex flex-col justify-center lg:mr-12 lg:order-1">
         <h3 className="uppercase mb-4  font-extrabold ">In Los Angeles, every neighborhood is a world. And the world you choose, matters.</h3>
-        <p className="text-2xl lg:text-4xl mb-8">
+        <p className="text-2xl lg:text-4xl mb-5">
         Los Angeles’ hundreds of unique neighborhoods offer diverse lifestyles, from luxury isolation to vibrant community. Our tool simplifies your search by deeply analyzing the identity, demographics, and services of each location. Find the perfect ecosystem that truly fits how you live.
         </p>
       </div>

@@ -1,31 +1,31 @@
-"use client"
+"use client"; // Necesario porque usamos useRouter y hooks
 
-
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldLegend,
-  FieldSeparator,
   FieldSet,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
 export default function FieldDemo() {
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Evita recargar la página
+    router.push("/quest"); // Navega a /quest
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-md text-center">
-        <form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="w-full max-w-md text-center p-6 bg-white rounded-2xl shadow-md">
+        <form onSubmit={handleSubmit}>
           <FieldGroup>
             <FieldSet>
               <FieldLegend>SIGN UP</FieldLegend>
@@ -34,98 +34,51 @@ export default function FieldDemo() {
               </FieldDescription>
               <FieldGroup>
                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                    Username
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-name-43j"
-                    placeholder="@LaReinaDeLosDragones"
-                    required
-                  />
+                  <FieldLabel htmlFor="username">Username</FieldLabel>
+                  <Input id="username" placeholder="@LaReinaDeLosDragones" required />
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                    Name 
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-name-43j"
-                    placeholder="Jon"
-                    required
-                  />
+                  <FieldLabel htmlFor="name">Name</FieldLabel>
+                  <Input id="name" placeholder="Jon" required />
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                    Surname
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-name-43j"
-                    placeholder="Snow"
-                    required
-                  />
+                  <FieldLabel htmlFor="surname">Surname</FieldLabel>
+                  <Input id="surname" placeholder="Snow" required />
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                    Password
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-name-43j"
-                    required
-                  />
+                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <Input id="password" type="password" required />
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-number-uw1">
-                    Phone number
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-number-uw1"
-                    placeholder="213-543-1243"
-                    required
-                  />
-                  <FieldDescription>
-                    Enter your 10-digit card number
-                  </FieldDescription>
+                  <FieldLabel htmlFor="phone">Phone number</FieldLabel>
+                  <Input id="phone" placeholder="213-543-1243" required />
+                  <FieldDescription>Enter your 10-digit number</FieldDescription>
                 </Field>
-                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                    Email
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-name-43j"
-                    placeholder="thekinginthenorth@gmail.com"
-                    required
-                  />
+                <Field>
+                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                  <Input id="email" placeholder="thekinginthenorth@gmail.com" required />
                 </Field>
-                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                    Postal code
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-name-43j"
-                    placeholder="90001"
-                    required
-                  />
+                <Field>
+                  <FieldLabel htmlFor="postal">Postal code</FieldLabel>
+                  <Input id="postal" placeholder="90001" required />
                 </Field>
-                <div className="grid grid-cols-3 gap-4">
-                
-                </div>
               </FieldGroup>
             </FieldSet>
 
             <FieldSet>
               <FieldGroup>
                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-optional-comments">
-                    Comments
-                  </FieldLabel>
+                  <FieldLabel htmlFor="comments">Comments</FieldLabel>
                   <Textarea
-                    id="checkout-7j9-optional-comments"
+                    id="comments"
                     placeholder="Add any additional comments"
                     className="resize-none"
                   />
                 </Field>
               </FieldGroup>
             </FieldSet>
-            <Field orientation="horizontal">
+
+            <Field orientation="horizontal" className="flex justify-between mt-4">
               <Button type="submit">Submit</Button>
               <Button variant="outline" type="button">
                 Cancel
@@ -135,5 +88,5 @@ export default function FieldDemo() {
         </form>
       </div>
     </div>
-  )
+  );
 }
