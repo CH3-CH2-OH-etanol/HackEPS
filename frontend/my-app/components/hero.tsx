@@ -13,7 +13,6 @@ export default function Hero() {
 
   return (
     <div className="h-screen overflow-hidden">
-      <Header />
       <motion.div style={{ y }} className="relative h-full">
         <Image
           src="/images/5.jpeg"

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -25,11 +26,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        
+        {/* NAVBAR */}
+        <nav className="w-full px-6 py-4 flex items-center justify-between border-b bg-white/80 backdrop-blur">
+          <Link href="/" className="text-xl font-bold">
+            MyApp
+          </Link>
+
+          <div className="flex items-center gap-4">
+            <Link href="/">
+              <Button variant="ghost">Inicio</Button>
+            </Link>
+
+            <Link href="/sing.up">
+              <Button>Sign Up</Button>
+            </Link>
+          </div>
+        </nav>
+
+        {/* CONTENIDO */}
+        <main className="min-h-screen">
+          {children}
+        </main>
       </body>
     </html>
   );
 }
+

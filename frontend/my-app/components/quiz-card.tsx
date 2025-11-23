@@ -87,7 +87,7 @@ export default function QuizCard({
         </div>
 
         {selectedAnswer === null && (
-          <p className="text-sm text-gray-500 mt-4 text-center">Selecciona una opción para continuar</p>
+          <p className="text-sm text-gray-500 mt-4 text-center">Select an option to continue:</p>
         )}
       </div>
     </Card>
