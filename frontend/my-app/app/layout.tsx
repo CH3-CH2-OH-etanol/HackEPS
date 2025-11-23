@@ -39,7 +39,7 @@ export default function RootLayout({
               <Button variant="ghost">Inicio</Button>
             </Link>
 
-            <Link href="/sing.up">
+            <Link href="/get-started">
               <Button>Sign Up</Button>
             </Link>
           </div>
