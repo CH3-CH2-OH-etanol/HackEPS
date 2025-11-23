@@ -84,7 +84,7 @@ for j in range(len(requisits)):
     else:
         print("- " + requisits[j] + ": NO compleix ")
 
-print("\n JUSTIFICACIÓ:")
+print("JUSTIFICACIÓ:")
 
 print("El barri", millor_barri, "s'ha triat perquè és el que presenta un nombre més alt de coincidències")
 print("amb les teves preferències. Compleix", coincidencia[max_index], "dels", respostes_valides, "requisits que has indicat.")
