@@ -31,7 +31,7 @@ export default function RootLayout({
         {/* NAVBAR */}
         <nav className="w-full px-6 py-4 flex items-center justify-between border-b bg-white/80 backdrop-blur">
           <Link href="/" className="text-xl font-bold">
-            MyApp
+            Kingtown LA
           </Link>
 
           <div className="flex items-center gap-4">
