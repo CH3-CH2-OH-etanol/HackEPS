@@ -1,12 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import QuizCard from "@/components/quiz-card"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import QuizCard from "@/components/quiz-card";
 
 export default function Page() {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
-  const [answers, setAnswers] = useState<(number | null)[]>(Array(8).fill(null))
+  const router = useRouter();
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [answers, setAnswers] = useState<(number | null)[]>(Array(8).fill(null));
 
   const questions = [
     {
@@ -16,7 +19,6 @@ export default function Page() {
     {
       question: "Do you prefer your home to be near parks and green spaces?",
       options: ["✅ Yes", "😐 Indifferent", "❌ No"],
-      
     },
     {
       question: "Is good security in the neighborhood important to you?",
@@ -42,30 +44,65 @@ export default function Page() {
       question: "Do you prefer living close to cultural or tourist attractions?",
       options: ["✅ Yes", "😐 Indifferent", "❌ No"],
     },
-  ]
+  ];
+
+  // Mapea los índices de las opciones a tus valores deseados: 1, 0, -1
+  const mapAnswerValue = (index: number) => {
+    switch (index) {
+      case 0:
+        return 1; // Primera opción
+      case 1:
+        return 0; // Segunda opción
+      case 2:
+        return -1; // Tercera opción
+      default:
+        return 0;
+    }
+  };
 
   const handleSelectAnswer = (index: number) => {
-    setSelectedAnswer(index)
-  }
+    setSelectedAnswer(index);
+  };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (selectedAnswer !== null) {
-      const newAnswers = [...answers]
-      newAnswers[currentQuestion] = selectedAnswer
-      setAnswers(newAnswers)
+      const newAnswers = [...answers];
+      newAnswers[currentQuestion] = mapAnswerValue(selectedAnswer);
+      setAnswers(newAnswers);
 
       if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1)
-        setSelectedAnswer(answers[currentQuestion + 1])
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedAnswer(answers[currentQuestion + 1]);
       } else {
-        // Quiz completed
-        console.log("Quiz completado:", newAnswers)
+        // Quiz completado: envia al backend
+        try {
+          const response = await fetch("http://localhost:8000/barris/recomanar", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newAnswers),
+          });
+
+          const data = await response.json();
+          console.log("Respuesta del backend:", data);
+
+
+          if (response.ok) {
+            console.log("Quiz completado:", newAnswers);
+            //router.push("/quest"); // Navega a la página /quest
+          } else {
+            console.error("Error enviando el quiz:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error de red:", error);
+        }
       }
     }
-  }
+  };
 
-  const isLastQuestion = currentQuestion === questions.length - 1
-  const allAnswered = answers.every((answer) => answer !== null)
+  const isLastQuestion = currentQuestion === questions.length - 1;
+  const allAnswered = answers.every((answer) => answer !== null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
@@ -80,5 +117,5 @@ export default function Page() {
         allAnswered={allAnswered}
       />
     </div>
-  )
+  );
 }
